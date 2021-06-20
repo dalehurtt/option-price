@@ -21,6 +21,7 @@ type OptionTrade = {
     Delta : decimal     // At the close of the purchase date
     IV : decimal        // At the close of the purchase date
     StockPrice : decimal    // At the close of the purchase date
+    Cover : string      // Option covering this option trade
 }
 
 type CondorTrade = {
