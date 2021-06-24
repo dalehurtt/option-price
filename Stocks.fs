@@ -2,7 +2,6 @@
 
 open System
 open Trade
-open Report
 
 let processTrades filename =
     let processTrade = Report.onStock filename       // curry to simplify

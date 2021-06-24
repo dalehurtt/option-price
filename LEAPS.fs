@@ -28,15 +28,13 @@ let processTrades filename =
         Symbol = "MSFT_012023C170"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 5, 27, 10, 46, 21)
+        Date = new DateTime (2021, 5, 27)
         Price = 87.50M
-        CostBasis = 87.50M
         Contracts = 1
         Delta = 0.86M
+        Theta = 0.0M
         IV = 30.76M
         StockPrice = 249.31M
-        Cover = "MSFT_071621C275"
-        Credit = 0.95M
     }
     
     // Check up on our PYPL LEAP Call
@@ -44,15 +42,13 @@ let processTrades filename =
         Symbol = "PYPL_012023C155"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 5, 26, 10, 49, 50)
+        Date = new DateTime (2021, 5, 26)
         Price = 115.00M
-        CostBasis = 115.00M
         Contracts = 1
         Delta = 0.90M
+        Theta = 0.0M
         IV = 40.69M
         StockPrice = 261.37M
-        Cover = "PYPL_071621C300"
-        Credit = 1.79M
     }
 
     // FIDELITY
@@ -62,15 +58,13 @@ let processTrades filename =
         Symbol = "CSCO_012023C35"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 6, 2, 10, 0, 0)
+        Date = new DateTime (2021, 6, 2)
         Price = 18.15M
-        CostBasis = 17.99405M  // Commissions added, sale subtracted
         Contracts = 10
         Delta = 0.89M
+        Theta = 0.0M
         IV = 32.21M
         StockPrice = 52.98M
-        Cover = "CSCO_071621C55"
-        Credit = 0.32M
     }
 
     // Check up on our DFS LEAP Call
@@ -78,15 +72,13 @@ let processTrades filename =
         Symbol = "DFS_012023C72.5"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 6, 1, 10, 0, 0)
+        Date = new DateTime (2021, 6, 1)
         Price = 52.11M
-        CostBasis = 52.11M
         Contracts = 2
         Delta = 0.85M
+        Theta = 0.0M
         IV = 45.01M
         StockPrice = 102.88M
-        Cover = "DFS_071621C130"
-        Credit = 1.10M
     }
 
     // Check up on our ENB LEAP Call
@@ -94,15 +86,13 @@ let processTrades filename =
         Symbol = "ENB_012122C32.5"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 5, 6, 10, 0, 0)
+        Date = new DateTime (2021, 5, 6)
         Price = 7.28M
-        CostBasis = 7.28M
         Contracts = 10
         Delta = 1.0M
+        Theta = 0.0M
         IV = 25.10M
         StockPrice = 39.79M
-        Cover = ""
-        Credit = 0.0M
     }
 
     // Check up on our FB LEAP Call
@@ -110,15 +100,13 @@ let processTrades filename =
         Symbol = "FB_012023C220"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 6, 2, 10, 0, 0)
+        Date = new DateTime (2021, 6, 2)
         Price = 124.00M
-        CostBasis = 124.00M
         Contracts = 1
         Delta = 0.86M
+        Theta = 0.0M
         IV = 37.64M
         StockPrice = 329.15M
-        Cover = "FB_071621C360"
-        Credit = 0.0M
     }
 
     // Check up on our Fidelity PYPL LEAP Call
@@ -126,15 +114,13 @@ let processTrades filename =
         Symbol = "PYPL_012122C220"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 5, 24, 10, 0, 0)
+        Date = new DateTime (2021, 5, 24)
         Price = 49.49M
-        CostBasis = 49.49M
         Contracts = 2
         Delta = 0.75M
+        Theta = 0.0M
         IV = 36.05M
         StockPrice = 257.17M
-        Cover = "PYPL_072321C300"
-        Credit = 4.40M
     }
     
     (*// Check up on our MMM LEAP Call
@@ -142,14 +128,13 @@ let processTrades filename =
         Symbol = "MMM_012122C175"
         OptionType = Call
         Position = Long
-        Date = new DateTime (2021, 5, 10, 10, 0, 0)
+        Date = new DateTime (2021, 5, 10)
         Price = 34.50M
-        CostBasis = 34.50M
+        Theta = 0.0M
         Contracts = 10
         Delta = 0.83M
         IV = 23.50M
         StockPrice = 261.37M
-        Cover = ""
     }*)
 
     // -------------------- LEAP PUTS --------------------
@@ -159,13 +144,11 @@ let processTrades filename =
         Symbol = "COIN_012023P160"
         OptionType = Put
         Position = Short
-        Date = new DateTime (2021, 6, 4, 10, 0, 0)
+        Date = new DateTime (2021, 6, 4)
         Price = 34.50M
-        CostBasis = 32.30M
         Contracts = 3
         Delta = -0.20M
+        Theta = 0.0M
         IV = 64.91M
         StockPrice = 228.79M
-        Cover = "COIN_071621P150"
-        Credit = 0.82M
     }*)

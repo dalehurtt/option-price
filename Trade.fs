@@ -44,19 +44,16 @@ type OptionTrade = {
     Position : TradeType
     Date : DateTime     // Purchase Date
     Price : decimal     // Purchase Price
-    CostBasis : decimal // Potentially lowered by the sale of options against it
     Contracts : int     // Negative values for short positions
     Delta : decimal     // At the close of the purchase date
+    Theta : decimal     // At the close of the purchase date
     IV : decimal        // At the close of the purchase date
     StockPrice : decimal    // At the close of the purchase date
-    Cover : string      // Option covering this option trade
-    Credit : decimal    // Price per contract of the covering option
 }
 
 
 type SpreadTrade = {
-    Options : List<OptionTrade>
-    Date : DateTime
+    Options : List<OptionTrade>     // Note this covers basic spreads, Iron Condors, Iron Butterflies, etc.
     SpreadType : SpreadType
     Net : decimal    // Credit taken in
     TargetPL : decimal  // 80% of credit taken in; 0.0M if debit
