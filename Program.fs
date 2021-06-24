@@ -1,7 +1,4 @@
 open System
-open Trade
-open Report
-open LEAPS
 
 [<EntryPoint>]
 let main _ =
@@ -12,6 +9,9 @@ let main _ =
     Report.startReport filename
 
     LEAPS.processTrades filename
+    Stocks.processTrades filename
+    Condors.processTrades filename
+    Spreads.processTrades filename
 
     Report.endReport filename
 

@@ -36,6 +36,7 @@ let processTrades filename =
         IV = 30.76M
         StockPrice = 249.31M
         Cover = "MSFT_071621C275"
+        Credit = 0.95M
     }
     
     // Check up on our PYPL LEAP Call
@@ -51,6 +52,7 @@ let processTrades filename =
         IV = 40.69M
         StockPrice = 261.37M
         Cover = "PYPL_071621C300"
+        Credit = 1.79M
     }
 
     // FIDELITY
@@ -67,7 +69,8 @@ let processTrades filename =
         Delta = 0.89M
         IV = 32.21M
         StockPrice = 52.98M
-        Cover = ""
+        Cover = "CSCO_071621C55"
+        Credit = 0.32M
     }
 
     // Check up on our DFS LEAP Call
@@ -82,7 +85,8 @@ let processTrades filename =
         Delta = 0.85M
         IV = 45.01M
         StockPrice = 102.88M
-        Cover = ""
+        Cover = "DFS_071621C130"
+        Credit = 1.10M
     }
 
     // Check up on our ENB LEAP Call
@@ -98,6 +102,7 @@ let processTrades filename =
         IV = 25.10M
         StockPrice = 39.79M
         Cover = ""
+        Credit = 0.0M
     }
 
     // Check up on our FB LEAP Call
@@ -112,7 +117,8 @@ let processTrades filename =
         Delta = 0.86M
         IV = 37.64M
         StockPrice = 329.15M
-        Cover = ""
+        Cover = "FB_071621C360"
+        Credit = 0.0M
     }
 
     // Check up on our Fidelity PYPL LEAP Call
@@ -127,10 +133,11 @@ let processTrades filename =
         Delta = 0.75M
         IV = 36.05M
         StockPrice = 257.17M
-        Cover = ""
+        Cover = "PYPL_072321C300"
+        Credit = 4.40M
     }
     
-    // Check up on our MMM LEAP Call
+    (*// Check up on our MMM LEAP Call
     processTrade {
         Symbol = "MMM_012122C175"
         OptionType = Call
@@ -143,11 +150,11 @@ let processTrades filename =
         IV = 23.50M
         StockPrice = 261.37M
         Cover = ""
-    }
+    }*)
 
     // -------------------- LEAP PUTS --------------------
 
-    // Check up on our COIN LEAP Put
+    (*// Check up on our COIN LEAP Put
     processTrade {
         Symbol = "COIN_012023P160"
         OptionType = Put
@@ -159,5 +166,6 @@ let processTrades filename =
         Delta = -0.20M
         IV = 64.91M
         StockPrice = 228.79M
-        Cover = ""
-    }
+        Cover = "COIN_071621P150"
+        Credit = 0.82M
+    }*)

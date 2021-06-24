@@ -8,6 +8,9 @@
     <Compile Include="TDAmeritrade.fs" />
     <Compile Include="Report.fs" />
     <Compile Include="LEAPS.fs" />
+    <Compile Include="Stocks.fs" />
+    <Compile Include="Condors.fs" />
+    <Compile Include="Spreads.fs" />
     <Compile Include="Program.fs" />
     <None Include="check-options.fsx" />
     <None Include="Script.fsx" />

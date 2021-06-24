@@ -124,3 +124,8 @@ let getCondorQuotes symbols =
     List.map (fun symbol ->
         getOptionQuote symbol
     ) symbols
+
+let getMultipleQuotes symbols =
+    List.map (fun symbol ->
+        getOptionQuote symbol
+    ) symbols

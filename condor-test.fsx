@@ -55,4 +55,32 @@ condor <- {
 quotes4 <- TDAmeritrade.getCondorQuotes condor.Symbols
 Report.onCondor filename condor quotes4
 
+condor <- {
+    Symbols = [ "V_071621P215"; "V_071621P217.5"; "V_071621C247.5"; "V_071621C250" ]
+    Date = new DateTime (2021, 6, 21, 15, 0, 0)
+    Price = [| 0.67M; 0.83M; 0.63M; 0.44M |]  
+    Contracts = 10
+    Delta = [| -0.09M; -0.11M; 0.13M; 0.09M |]  
+    IV = [| 0.2433M; 0.2348M; 0.1760M; 0.1796M |]
+    Credit = 322.58M
+    TargetPL = 258.06M
+    StockPrice = 234.32M
+}
+quotes4 <- TDAmeritrade.getCondorQuotes condor.Symbols
+Report.onCondor filename condor quotes4
+
+condor <- {
+    Symbols = [ "JNJ_082021P145"; "JNJ_082021P150"; "JNJ_082021C180"; "JNJ_082021C185" ]
+    Date = new DateTime (2021, 6, 21, 15, 0, 0)
+    Price = [| 0.54M; 0.88M; 0.32M; 0.17M |]  
+    Contracts = 10
+    Delta = [| -0.08M; -0.13M; 0.07M; 0.04M |]  
+    IV = [| 0.2147M; 0.1913M; 0.1595M; 0.1682M |]
+    Credit = 490.00M
+    TargetPL = 392.00M
+    StockPrice = 163.90M
+}
+quotes4 <- TDAmeritrade.getCondorQuotes condor.Symbols
+Report.onCondor filename condor quotes4
+
 Report.endReport filename
