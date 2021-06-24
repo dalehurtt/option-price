@@ -100,3 +100,35 @@ let processTrades filename =
         Net = 552.58M
         TargetPL = 418.06M
     }
+
+    processTrade {
+        Options = [
+            {
+                Symbol = "ROKU_070921C465"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 24)
+                Price = 5.72M
+                Contracts = -5
+                Delta = -0.00M
+                Theta = -0.00M
+                IV = 00.00M
+                StockPrice = 0.00M
+            }
+            {
+                Symbol = "ROKU_070921C485"
+                OptionType = Call
+                Position = Long
+                Date = new DateTime (2021, 6, 24)
+                Price = 5.32M
+                Contracts = 5
+                Delta = -0.00M
+                Theta = -0.00M
+                IV = 0.00M
+                StockPrice = 0.00M
+            }
+        ]
+        SpreadType = VerticalCredit
+        Net = 200.00M
+        TargetPL = 160.00M
+    }
