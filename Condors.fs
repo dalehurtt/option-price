@@ -61,7 +61,7 @@ let processTrades filename =
         StockPrice = 234.32M
     }*)
     
-    processTrade {
+    (*processTrade {
         Symbols = [ "JNJ_082021P145"; "JNJ_082021P150"; "JNJ_082021C180"; "JNJ_082021C185" ]
         Date = new DateTime (2021, 6, 21, 13, 26, 16)
         Price = [| 0.54M; 0.88M; 0.32M; 0.17M |]  
@@ -71,4 +71,4 @@ let processTrades filename =
         Credit = 490.00M
         TargetPL = 392.00M
         StockPrice = 163.90M
-    }
+    }*)

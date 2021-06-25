@@ -1,4 +1,5 @@
 # globs
+Secret.fs
 Makefile.in
 *.userprefs
 *.usertasks

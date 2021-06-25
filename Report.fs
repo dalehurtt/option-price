@@ -293,9 +293,9 @@ let onCondor filename (trade : CondorTrade) =
         [if curPL >= trade.TargetPL then
             sprintf "This trade has reached its target profit of $ %.2f. You are aiming to get $ %.2f when closing this position. %s" trade.TargetPL curPL green
         elif expdays <= 7 then
-            sprintf "This position is within %i days of expiration. %s" expdays bluesell
+            sprintf "This position is within %i days of expiration. Profit/Loss is estimated at $ %.2f. %s" expdays curPL bluesell
         elif isAnyDeltaTooHigh quotes then
-            sprintf "At least one leg in this position is over the target delta of .20/-.20. %s" red
+            sprintf "At least one leg in this position is over the target delta of .20/-.20. Profit/Loss is estimated at $ %.2f. %s" curPL red
         else
             sprintf "Profit/Loss is estimated at $ %.2f. %s" curPL blue] @
         //[showPotentialPrices trade.Options quotes] @
@@ -343,16 +343,16 @@ let onSpread filename (trade : SpreadTrade) =
         ) 0.0M quotes trade.Options
 
     let lines =
-        [sprintf "<h3>Report on %s %A %A Spread</h3><p>" underlying trade.Options.Head.OptionType trade.SpreadType] @
+        [sprintf "<h3>Report on %s %A %A Spread</h3><p>" underlying trade.Options.Head.OptionType (Trade.spreadTypeToString trade.SpreadType)] @
         [showOptionPositionAndType trade.Options] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
         [showPotentialPrices trade.Options quotes] @
         [if curPL >= trade.TargetPL then
             sprintf "This trade has reached its target profit of $ %.2f. You are aiming to get $ %.2f when closing this position. %s" trade.TargetPL curPL green
         elif expdays <= 7 then
-            sprintf "This position is within %i days of expiration. %s" expdays bluesell
+            sprintf "This position is within %i days of expiration. Profit/Loss is estimated at $ %.2f. %s" expdays curPL bluesell
         elif isAnyDeltaTooHigh quotes then
-            sprintf "At least one leg in this position is over the target delta of .20/-.20. %s" red
+            sprintf "At least one leg in this position is over the target delta of .20/-.20. Profit/Loss is estimated at $ %.2f. %s" curPL red
         else
             sprintf "Profit/Loss is estimated at $ %.2f. %s" curPL blue] @
         ["</p>"]

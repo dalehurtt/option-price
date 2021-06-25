@@ -92,7 +92,7 @@ let processTrades filename =
                 Contracts = 10
                 Delta = 0.09M
                 Theta = -0.06M
-                IV = 22.44M
+                IV = 22.98M
                 StockPrice = 336.77M
             }
         ]
@@ -110,27 +110,27 @@ let processTrades filename =
                 Date = new DateTime (2021, 6, 24)
                 Price = 5.72M
                 Contracts = -5
-                Delta = -0.00M
-                Theta = -0.00M
-                IV = 00.00M
-                StockPrice = 0.00M
+                Delta = 0.22M
+                Theta = -0.43M
+                IV = 53.11M
+                StockPrice = 423.58M
             }
             {
-                Symbol = "ROKU_070921C485"
+                Symbol = "ROKU_071621C485"
                 OptionType = Call
                 Position = Long
                 Date = new DateTime (2021, 6, 24)
                 Price = 5.32M
                 Contracts = 5
-                Delta = -0.00M
-                Theta = -0.00M
-                IV = 0.00M
-                StockPrice = 0.00M
+                Delta = 0.18M
+                Theta = -0.32M
+                IV = 53.94M
+                StockPrice = 423.58M
             }
         ]
         SpreadType = VerticalCredit
-        Net = 200.00M
-        TargetPL = 160.00M
+        Net = 193.14M
+        TargetPL = 154.51M
     }
 
     processTrade {
@@ -143,7 +143,7 @@ let processTrades filename =
                 Price = 0.71M
                 Contracts = 10
                 Delta = -0.05M
-                Theta = -0.00M
+                Theta = -0.06M
                 IV = 45.19M
                 StockPrice = 237.35M
             }
@@ -155,7 +155,7 @@ let processTrades filename =
                 Price = 0.87M
                 Contracts = -10
                 Delta = -0.07M
-                Theta = -0.00M
+                Theta = -0.06M
                 IV = 42.45M
                 StockPrice = 237.35M
             }
@@ -167,7 +167,7 @@ let processTrades filename =
                 Price = 1.11M
                 Contracts = -10
                 Delta = 0.10M
-                Theta = -0.00M
+                Theta = -0.07M
                 IV = 34.76M
                 StockPrice = 237.35M
             }
@@ -179,7 +179,7 @@ let processTrades filename =
                 Price = 0.87M
                 Contracts = 10
                 Delta = 0.08M
-                Theta = -0.00M
+                Theta = -0.06M
                 IV = 35.93M
                 StockPrice = 237.35M
             }
@@ -199,8 +199,8 @@ let processTrades filename =
                 Price = 0.67M
                 Contracts = 10
                 Delta = -0.09M
-                Theta = -0.00M
-                IV = 24.33M
+                Theta = -0.05M
+                IV = 24.40M
                 StockPrice = 234.32M
             }
             {
@@ -211,8 +211,8 @@ let processTrades filename =
                 Price = 0.83M
                 Contracts = -10
                 Delta = -0.11M
-                Theta = -0.00M
-                IV = 23.48M
+                Theta = -0.05M
+                IV = 23.55M
                 StockPrice = 234.32M
             }
             {
@@ -223,8 +223,8 @@ let processTrades filename =
                 Price = 0.63M
                 Contracts = -10
                 Delta = 0.13M
-                Theta = -0.00M
-                IV = 17.60M
+                Theta = -0.04M
+                IV = 17.52M
                 StockPrice = 234.32M
             }
             {
@@ -235,7 +235,7 @@ let processTrades filename =
                 Price = 0.44M
                 Contracts = 10
                 Delta = 0.09M
-                Theta = -0.00M
+                Theta = -0.03M
                 IV = 17.96M
                 StockPrice = 234.32M
             }
@@ -243,4 +243,116 @@ let processTrades filename =
         SpreadType = IronCondor
         Net = 322.58M
         TargetPL = 258.06M
+    }
+
+    processTrade {
+        Options = [
+            {
+                Symbol = "JNJ_082021P145"
+                OptionType = Put
+                Position = Long
+                Date = new DateTime (2021, 6, 21)
+                Price = 0.54M
+                Contracts = 10
+                Delta = -0.08M
+                Theta = -0.02M
+                IV = 21.99M
+                StockPrice = 163.90M
+            }
+            {
+                Symbol = "JNJ_082021P150"
+                OptionType = Put
+                Position = Short
+                Date = new DateTime (2021, 6, 21)
+                Price = 0.88M
+                Contracts = -10
+                Delta = -0.13M
+                Theta = -0.02M
+                IV = 19.72M
+                StockPrice = 163.90M
+            }
+            {
+                Symbol = "JNJ_082021C180"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 21)
+                Price = 0.32M
+                Contracts = -10
+                Delta = 0.07M
+                Theta = -0.01M
+                IV = 15.45M
+                StockPrice = 163.90M
+            }
+            {
+                Symbol = "JNJ_082021C185"
+                OptionType = Call
+                Position = Long
+                Date = new DateTime (2021, 6, 21)
+                Price = 0.17M
+                Contracts = 10
+                Delta = 0.04M
+                Theta = -0.01M
+                IV = 16.38M
+                StockPrice = 163.90M
+            }
+        ]
+        SpreadType = IronCondor
+        Net = 463.40M
+        TargetPL = 370.72M
+    }
+
+    processTrade {
+        Options = [
+            {
+                Symbol = "BBBY_071621P21"
+                OptionType = Put
+                Position = Long
+                Date = new DateTime (2021, 6, 24)
+                Price = 0.24M
+                Contracts = 10
+                Delta = -0.06M
+                Theta = -0.02M
+                IV = 106.35M
+                StockPrice = 30.25M
+            }
+            {
+                Symbol = "BBBY_071621P26"
+                OptionType = Put
+                Position = Short
+                Date = new DateTime (2021, 6, 24)
+                Price = 1.20M
+                Contracts = -10
+                Delta = -0.23M
+                Theta = -0.05M
+                IV = 106.35M
+                StockPrice = 30.25M
+            }
+            {
+                Symbol = "BBBY_071621C49"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 24)
+                Price = 0.38M
+                Contracts = -10
+                Delta = 0.10M
+                Theta = -0.04M
+                IV = 129.80M
+                StockPrice = 30.25M
+            }
+            {
+                Symbol = "BBBY_071621C50"
+                OptionType = Call
+                Position = Long
+                Date = new DateTime (2021, 6, 24)
+                Price = 0.37M
+                Contracts = 10
+                Delta = 0.09M
+                Theta = -0.03M
+                IV = 129.45M
+                StockPrice = 30.25M
+            }
+        ]
+        SpreadType = IronCondor
+        Net = 942.59M
+        TargetPL = 754.07M
     }

@@ -3,9 +3,6 @@
 open System
 open FSharp.Data
 
-let consumerkey = "SHIGOV3DSGWWNZ4NFGKYP9CXRGJJYOKM"
-let clientid = "SHIGOV3DSGWWNZ4NFGKYP9CXRGJJYOKM@AMER.OAUTHAP"
-
 //Option:
 (*type OptionQuote = JsonProvider<"""{
      "symbol": "string",
@@ -108,7 +105,7 @@ type OptionQuote = JsonProvider<"""{
 
 let webclient = new Net.WebClient ()
 let baseurl = "https://api.tdameritrade.com/v1/marketdata/"
-let parameters = sprintf "/quotes?apikey=%s" consumerkey
+let parameters = sprintf "/quotes?apikey=%s" API.consumerkey
 
 let trimOptionJson (jsonstr : string) =
      let idx = jsonstr.IndexOf (":")

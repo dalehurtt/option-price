@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Trade.fs" />
+    <Compile Include="Secret.fs" />
     <Compile Include="TDAmeritrade.fs" />
     <Compile Include="Report.fs" />
     <Compile Include="LEAPS.fs" />
@@ -15,6 +16,7 @@
     <None Include="check-options.fsx" />
     <None Include="Script.fsx" />
     <None Include="condor-test.fsx" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.1.1">
