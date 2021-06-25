@@ -20,37 +20,25 @@ let processTrades filename =
 
     // FIDELITY
     
-    (*processTrade {
-        Symbol = "XX"
-        Position = Long
-        Date = new DateTime (2021, 1, 1)
-        Price = 0M
-        CostBasis = 0M
-        Shares = 0M
-        Cover = ""
-        Credit = 0M
-    }*)
-
     processTrade {
         Symbol = "ABBV"
         Position = Long
         Date = new DateTime (2021, 4, 13)
         Price = 108.779M
-        CostBasis = 108.66726M
         Shares = 500.0M
-        Cover = "ABBV_070921C121"
-        Credit = 0.65M
-    }
-
-    processTrade {
-        Symbol = "ENB"
-        Position = Long
-        Date = new DateTime (2021, 4, 13)
-        Price = 37.55775M
-        CostBasis = 37.64129M
-        Shares = 2200.0M
-        Cover = "ENB_071621C42.5"
-        Credit = 0.22M
+        Cover =
+            {
+                Symbol = "ABBV_070921C121"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 16)
+                Price = 0.65M
+                Contracts = -4
+                Delta = 0.17M
+                Theta = -0.03M
+                IV = 19.03M
+                StockPrice = 115.53M
+            }
     }
 
     processTrade {
@@ -58,10 +46,20 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 4, 13)
         Price = 37.04569M
-        CostBasis = 36.00505M
         Shares = 1300.0M
-        Cover = "PFE_071621C41"
-        Credit = 0.36M
+        Cover =
+            {
+                Symbol = "PFE_071621C41"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 4)
+                Price = 0.37M
+                Contracts = -12
+                Delta = 0.23M
+                Theta = -0.01M
+                IV = 17.63M
+                StockPrice = 39.15M
+            }
     }
 
     processTrade {
@@ -69,10 +67,20 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 4, 27)
         Price = 86.45893M
-        CostBasis = 84.30184M
         Shares = 800.0M
-        Cover = "RIO_071621C89.07"
-        Credit = 0.82M
+        Cover =
+            {
+                Symbol = "RIO_071621C89.07"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 17)
+                Price = 0.83M
+                Contracts = -8
+                Delta = 0.22M
+                Theta = -0.04M
+                IV = 30.56M
+                StockPrice = 83.02M
+            }
     }
 
     processTrade {
@@ -80,10 +88,20 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 6, 7)
         Price = 29.215M
-        CostBasis = 29.03221M
         Shares = 1600.0M
-        Cover = "T_072321C29.5"
-        Credit = 0.26M
+        Cover =
+            {
+                Symbol = "T_072321C29.5"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 18)
+                Price = 0.27M
+                Contracts = -16
+                Delta = 0.27M
+                Theta = -0.01M
+                IV = 20.87M
+                StockPrice = 28.65M
+            }
     }
 
     processTrade {
@@ -91,10 +109,20 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 6, 2)
         Price = 56.60M
-        CostBasis = 56.40721M
         Shares = 800.0M
-        Cover = "VZ_071621C57.5"
-        Credit = 0.27M
+        Cover =
+            {
+                Symbol = "VZ_071621C57.5"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 18)
+                Price = 0.28M
+                Contracts = -8
+                Delta = 0.20M
+                Theta = -0.01M
+                IV = 14.86M
+                StockPrice = 55.82M
+            }
     }
 
     processTrade {
@@ -102,21 +130,20 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 6, 7)
         Price = 107.78M
-        CostBasis = 107.00475M
         Shares = 400.0M
-        Cover = "CVX_072321C111"
-        Credit = 1.11M
-    }
-
-    processTrade {
-        Symbol = "ED"
-        Position = Long
-        Date = new DateTime (2021, 6, 7)
-        Price = 77.34570M
-        CostBasis = 77.34570M
-        Shares = 600.0M
-        Cover = "ED_072321C80"
-        Credit = 0.44M
+        Cover =
+            {
+                Symbol = "CVX_072321C111"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 18)
+                Price = 1.12M
+                Contracts = -4
+                Delta = 0.20M
+                Theta = -0.03M
+                IV = 27.22M
+                StockPrice = 103.03M
+            }
     }
 
     processTrade {
@@ -124,8 +151,18 @@ let processTrades filename =
         Position = Long
         Date = new DateTime (2021, 3, 24)
         Price = 57.23644M
-        CostBasis = 54.78797M
         Shares = 800.0M
-        Cover = "XOM_082021C72.5"
-        Credit = 0.39M
+        Cover =
+            {
+                Symbol = "XOM_082021C72.5"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 21)
+                Price = 0.395M
+                Contracts = -8
+                Delta = 0.11M
+                Theta = -0.01M
+                IV = 30.02M
+                StockPrice = 62.59M
+            }
     }

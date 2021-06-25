@@ -356,3 +356,35 @@ let processTrades filename =
         Net = 942.59M
         TargetPL = 754.07M
     }
+
+    processTrade {
+        Options = [
+            {
+                Symbol = "RIO_071621P74.07"
+                OptionType = Put
+                Position = Long
+                Date = new DateTime (2021, 6, 11)
+                Price = 0.35M
+                Contracts = 2
+                Delta = -0.07M
+                Theta = -0.02M
+                IV = 36.48M
+                StockPrice = 87.48M
+            }
+            {
+                Symbol = "RIO_071621P79.07"
+                OptionType = Put
+                Position = Short
+                Date = new DateTime (2021, 6, 11)
+                Price = 0.74M
+                Contracts = -2
+                Delta = -0.14M
+                Theta = -0.03M
+                IV = 30.99M
+                StockPrice = 87.48M
+            }
+        ]
+        SpreadType = VerticalCredit
+        Net = 79.25M
+        TargetPL = 63.40M
+    }

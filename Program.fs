@@ -13,6 +13,7 @@ let main _ =
     Stocks.processTrades filename
     //Condors.processTrades filename
     Spreads.processTrades filename
+    Singles.processTrades filename
 
     Report.endReport filename
 

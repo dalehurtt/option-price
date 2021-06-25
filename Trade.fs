@@ -67,9 +67,7 @@ type StockTrade = {
     Position : TradeType
     Date : DateTime
     Price : decimal
-    CostBasis : decimal
     Shares : decimal
-    Cover : string
-    Credit : decimal    // Price per contract
+    Cover : OptionTrade
 }
 

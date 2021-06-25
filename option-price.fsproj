@@ -12,11 +12,13 @@
     <Compile Include="Stocks.fs" />
     <Compile Include="Condors.fs" />
     <Compile Include="Spreads.fs" />
+    <Compile Include="Singles.fs" />
     <Compile Include="Program.fs" />
     <None Include="check-options.fsx" />
     <None Include="Script.fsx" />
     <None Include="condor-test.fsx" />
     <None Include="README.md" />
+    <None Include="TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.1.1">

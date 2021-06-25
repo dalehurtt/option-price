@@ -111,10 +111,10 @@ let showIV tradeIV quoteIV position =
 
     Ex: (Long Put/Short Put/Short Call/Long Call)
 *)
-let showOptionPositionAndType (options : List<OptionTrade>) =
+let showOptionPositionTypeAndPrice (options : List<OptionTrade>) =
     let opstr =
         List.fold (fun str (option : OptionTrade) ->
-            sprintf "%s%A %A/" str option.Position option.OptionType
+            sprintf "%s%A %A %s/" str option.Position option.OptionType option.Symbol
         ) "(" options
     sprintf "%s)" (opstr.Substring (0, opstr.Length-1))
 
@@ -344,7 +344,7 @@ let onSpread filename (trade : SpreadTrade) =
 
     let lines =
         [sprintf "<h3>Report on %s %A %A Spread</h3><p>" underlying trade.Options.Head.OptionType (Trade.spreadTypeToString trade.SpreadType)] @
-        [showOptionPositionAndType trade.Options] @
+        [showOptionPositionTypeAndPrice trade.Options] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
         [showPotentialPrices trade.Options quotes] @
         [if curPL >= trade.TargetPL then
@@ -361,9 +361,9 @@ let onSpread filename (trade : SpreadTrade) =
 
 let onStock filename (trade : StockTrade) =
     let lines =
-        [sprintf "<h3> Report on Covered Call %s for %s</h3>" trade.Cover trade.Symbol] @
+        [sprintf "<h3> Report on Covered Call %s for %s</h3>" trade.Cover.Symbol trade.Symbol] @
         ["<p class=\"covered\">"] @
-        (showCoverOptionValue trade.Cover Call trade.Credit) @   // Having Stock is equivalent to having Long Call
+        (showCoverOptionValue trade.Cover.Symbol Call trade.Cover.Price) @   // Having Stock is equivalent to having Long Call
         ["</p>"]
     lines |> List.toArray |> appendToReport filename
 
