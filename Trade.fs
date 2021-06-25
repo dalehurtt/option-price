@@ -17,6 +17,7 @@ type SpreadType =
     | VerticalCredit
     | VerticalDebit
     | IronCondor
+    | CoveredCall
 
 
 let spreadTypeToString st =
@@ -24,6 +25,7 @@ let spreadTypeToString st =
     | VerticalCredit -> "Vertical Credit"
     | VerticalDebit -> "Vertical Debit"
     | IronCondor -> "Iron Condor"
+    | CoveredCall -> "Covered Call"
 
 
 type CondorTrade = {

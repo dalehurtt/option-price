@@ -120,19 +120,21 @@ let showOptionPositionAndType (options : List<OptionTrade>) =
 
 
 (*
-
+    Lists out the current estimated option prices
 *)
-let showPotentialPrices (quotes : List<OptionQuote.Root>) =
+let showPotentialPrices (trades : List<OptionTrade>) (quotes : List<OptionQuote.Root>) =
     let mutable ctr = 0
-    List.fold (fun  str (quote : OptionQuote.Root)  ->
+    List.fold2 (fun  str trade (quote : OptionQuote.Root)  ->
+        let sign =
+            if trade.Contracts < 0
+            then "-"
+            else "+"
         ctr <- ctr + 1
-        if ctr = 1 then
-            sprintf "%s $ %.2f," str (calcPotentialPrice quote.BidPrice quote.AskPrice)
-        elif ctr = quotes.Length then
-            sprintf "%s and $ %.2f" str (calcPotentialPrice quote.BidPrice quote.AskPrice)
+        if ctr = quotes.Length then
+            sprintf "%s and $ %s%.2f" str sign (calcPotentialPrice quote.BidPrice quote.AskPrice)
         else
-            sprintf "%s $ -%.2f," str (calcPotentialPrice quote.BidPrice quote.AskPrice)
-    ) "Option values are " quotes
+            sprintf "%s $ %s%.2f," str sign (calcPotentialPrice quote.BidPrice quote.AskPrice)
+    ) "Option values are " trades quotes
     |> sprintf "%s. "
 
 // -------------------- XX --------------------
@@ -296,7 +298,7 @@ let onCondor filename (trade : CondorTrade) =
             sprintf "At least one leg in this position is over the target delta of .20/-.20. %s" red
         else
             sprintf "Profit/Loss is estimated at $ %.2f. %s" curPL blue] @
-        [showPotentialPrices quotes] @
+        //[showPotentialPrices trade.Options quotes] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
         ["</p>"]
     lines |> List.toArray |> appendToReport filename
@@ -344,7 +346,7 @@ let onSpread filename (trade : SpreadTrade) =
         [sprintf "<h3>Report on %s %A %A Spread</h3><p>" underlying trade.Options.Head.OptionType trade.SpreadType] @
         [showOptionPositionAndType trade.Options] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
-        [showPotentialPrices quotes] @
+        [showPotentialPrices trade.Options quotes] @
         [if curPL >= trade.TargetPL then
             sprintf "This trade has reached its target profit of $ %.2f. You are aiming to get $ %.2f when closing this position. %s" trade.TargetPL curPL green
         elif expdays <= 7 then

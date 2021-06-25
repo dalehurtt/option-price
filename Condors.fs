@@ -37,7 +37,7 @@ let processTrades filename =
         StockPrice = 186.84M
     }*)
     
-    processTrade {
+    (*processTrade {
         Symbols = [ "BA_071621P195"; "BA_071621P200"; "BA_071621C270"; "BA_071621C275" ]
         Date = new DateTime (2021, 6, 18, 15, 31, 57)
         Price = [| 0.71M; 0.87M; 1.11M; 0.87M |]  
@@ -47,9 +47,9 @@ let processTrades filename =
         Credit = 373.39M
         TargetPL = 298.71M
         StockPrice = 237.35M
-    }
+    }*)
     
-    processTrade {
+    (*processTrade {
         Symbols = [ "V_071621P215"; "V_071621P217.5"; "V_071621C247.5"; "V_071621C250" ]
         Date = new DateTime (2021, 6, 21, 15, 0, 0)
         Price = [| 0.67M; 0.83M; 0.63M; 0.44M |]  
@@ -59,7 +59,7 @@ let processTrades filename =
         Credit = 322.58M
         TargetPL = 258.06M
         StockPrice = 234.32M
-    }
+    }*)
     
     processTrade {
         Symbols = [ "JNJ_082021P145"; "JNJ_082021P150"; "JNJ_082021C180"; "JNJ_082021C185" ]
