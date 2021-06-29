@@ -35,6 +35,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 30.76M
         StockPrice = 249.31M
+        Broker = "TD Ameritrade"
     }
     
     // Check up on our PYPL LEAP Call
@@ -49,6 +50,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 40.69M
         StockPrice = 261.37M
+        Broker = "TD Ameritrade"
     }
 
     // FIDELITY
@@ -65,6 +67,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 32.21M
         StockPrice = 52.98M
+        Broker = "Fidelity"
     }
 
     // Check up on our DFS LEAP Call
@@ -79,6 +82,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 45.01M
         StockPrice = 102.88M
+        Broker = "Fidelity"
     }
 
     // Check up on our ENB LEAP Call
@@ -93,6 +97,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 25.10M
         StockPrice = 39.79M
+        Broker = "Fidelity"
     }
 
     // Check up on our FB LEAP Call
@@ -107,6 +112,7 @@ let processTrades filename =
         Theta = 0.0M
         IV = 37.64M
         StockPrice = 329.15M
+        Broker = "Fidelity"
     }
 
     // Check up on our Fidelity PYPL LEAP Call
@@ -121,34 +127,6 @@ let processTrades filename =
         Theta = 0.0M
         IV = 36.05M
         StockPrice = 257.17M
+        Broker = "Fidelity"
     }
     
-    (*// Check up on our MMM LEAP Call
-    processTrade {
-        Symbol = "MMM_012122C175"
-        OptionType = Call
-        Position = Long
-        Date = new DateTime (2021, 5, 10)
-        Price = 34.50M
-        Theta = 0.0M
-        Contracts = 10
-        Delta = 0.83M
-        IV = 23.50M
-        StockPrice = 261.37M
-    }*)
-
-    // -------------------- LEAP PUTS --------------------
-
-    (*// Check up on our COIN LEAP Put
-    processTrade {
-        Symbol = "COIN_012023P160"
-        OptionType = Put
-        Position = Short
-        Date = new DateTime (2021, 6, 4)
-        Price = 34.50M
-        Contracts = 3
-        Delta = -0.20M
-        Theta = 0.0M
-        IV = 64.91M
-        StockPrice = 228.79M
-    }*)

@@ -28,7 +28,7 @@ let spreadTypeToString st =
     | CoveredCall -> "Covered Call"
 
 
-type CondorTrade = {
+(*type CondorTrade = {
     Symbols : List<string> // long put, short put, short call, long call
     Date : DateTime     // Purchase Date
     Price : decimal []  // long put, short put, short call, long call
@@ -38,7 +38,7 @@ type CondorTrade = {
     Credit : decimal    // Credit taken in
     TargetPL : decimal  // 80% of credit taken in
     StockPrice : decimal   // At the close of the purchase date
-}
+}*)
 
 type OptionTrade = {
     Symbol : string
@@ -51,6 +51,7 @@ type OptionTrade = {
     Theta : decimal     // At the close of the purchase date
     IV : decimal        // At the close of the purchase date
     StockPrice : decimal    // At the close of the purchase date
+    Broker : string
 }
 
 
@@ -68,6 +69,6 @@ type StockTrade = {
     Date : DateTime
     Price : decimal
     Shares : decimal
-    Cover : OptionTrade
+    Cover : OptionTrade option
 }
 

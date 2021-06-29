@@ -4,24 +4,34 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Stocks.fs" />
+    <Compile Remove="Spreads.fs" />
+    <Compile Remove="Singles.fs" />
+    <Compile Remove="Condors.fs" />
+    <Compile Remove="LEAPS.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="check-options.fsx" />
+    <None Remove="Script.fsx" />
+    <None Remove="condor-test.fsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.fs" />
     <Compile Include="Trade.fs" />
+    <Compile Include="StockQuoteData.fs" />
     <Compile Include="Secret.fs" />
     <Compile Include="TDAmeritrade.fs" />
     <Compile Include="Report.fs" />
-    <Compile Include="LEAPS.fs" />
-    <Compile Include="Stocks.fs" />
-    <Compile Include="Condors.fs" />
-    <Compile Include="Spreads.fs" />
-    <Compile Include="Singles.fs" />
+    <Compile Include="Positions.fs" />
     <Compile Include="Program.fs" />
-    <None Include="check-options.fsx" />
-    <None Include="Script.fsx" />
-    <None Include="condor-test.fsx" />
     <None Include="README.md" />
     <None Include="TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="4.1.1">
+      <GeneratePathProperty></GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Skender.Stock.Indicators" Version="1.13.0">
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
   </ItemGroup>

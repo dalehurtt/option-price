@@ -3,18 +3,16 @@ open System
 [<EntryPoint>]
 let main _ =
     // -------------------- HEADER --------------------
-    let filepath = "/Volumes/LaCie/OptionData/"
+    //let reportpath = "/Volumes/LaCie/TradingData/"
+    let optionpath = "/Volumes/LaCie/TradingData/OptionData/"
+    let stockpath = "/Volumes/LaCie/TradingData/StockData/"
     //let filepath = @"C:\Temp\"
-    let filename = sprintf @"%s%i-%i-%i-Report.html" filepath DateTime.Now.Year DateTime.Now.Month DateTime.Now.Day
+    let reportname = sprintf @"%s%i-%i-%i-positions.html" optionpath DateTime.Now.Year DateTime.Now.Month DateTime.Now.Day
 
-    Report.startReport filename
+    Report.startReport
 
-    LEAPS.processTrades filename
-    Stocks.processTrades filename
-    //Condors.processTrades filename
-    Spreads.processTrades filename
-    Singles.processTrades filename
+    Positions.processTrades stockpath
 
-    Report.endReport filename
+    Report.endReport reportname
 
     0 // return an integer exit code

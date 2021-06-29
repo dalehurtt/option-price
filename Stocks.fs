@@ -26,7 +26,7 @@ let processTrades filename =
         Date = new DateTime (2021, 4, 13)
         Price = 108.779M
         Shares = 500.0M
-        Cover =
+        Cover = Some
             {
                 Symbol = "ABBV_070921C121"
                 OptionType = Call
@@ -38,90 +38,7 @@ let processTrades filename =
                 Theta = -0.03M
                 IV = 19.03M
                 StockPrice = 115.53M
-            }
-    }
-
-    processTrade {
-        Symbol = "PFE"
-        Position = Long
-        Date = new DateTime (2021, 4, 13)
-        Price = 37.04569M
-        Shares = 1300.0M
-        Cover =
-            {
-                Symbol = "PFE_071621C41"
-                OptionType = Call
-                Position = Short
-                Date = new DateTime (2021, 6, 4)
-                Price = 0.37M
-                Contracts = -12
-                Delta = 0.23M
-                Theta = -0.01M
-                IV = 17.63M
-                StockPrice = 39.15M
-            }
-    }
-
-    processTrade {
-        Symbol = "RIO"
-        Position = Long
-        Date = new DateTime (2021, 4, 27)
-        Price = 86.45893M
-        Shares = 800.0M
-        Cover =
-            {
-                Symbol = "RIO_071621C89.07"
-                OptionType = Call
-                Position = Short
-                Date = new DateTime (2021, 6, 17)
-                Price = 0.83M
-                Contracts = -8
-                Delta = 0.22M
-                Theta = -0.04M
-                IV = 30.56M
-                StockPrice = 83.02M
-            }
-    }
-
-    processTrade {
-        Symbol = "T"
-        Position = Long
-        Date = new DateTime (2021, 6, 7)
-        Price = 29.215M
-        Shares = 1600.0M
-        Cover =
-            {
-                Symbol = "T_072321C29.5"
-                OptionType = Call
-                Position = Short
-                Date = new DateTime (2021, 6, 18)
-                Price = 0.27M
-                Contracts = -16
-                Delta = 0.27M
-                Theta = -0.01M
-                IV = 20.87M
-                StockPrice = 28.65M
-            }
-    }
-
-    processTrade {
-        Symbol = "VZ"
-        Position = Long
-        Date = new DateTime (2021, 6, 2)
-        Price = 56.60M
-        Shares = 800.0M
-        Cover =
-            {
-                Symbol = "VZ_071621C57.5"
-                OptionType = Call
-                Position = Short
-                Date = new DateTime (2021, 6, 18)
-                Price = 0.28M
-                Contracts = -8
-                Delta = 0.20M
-                Theta = -0.01M
-                IV = 14.86M
-                StockPrice = 55.82M
+                Broker = "Fidelity"
             }
     }
 
@@ -131,7 +48,7 @@ let processTrades filename =
         Date = new DateTime (2021, 6, 7)
         Price = 107.78M
         Shares = 400.0M
-        Cover =
+        Cover = Some
             {
                 Symbol = "CVX_072321C111"
                 OptionType = Call
@@ -143,6 +60,73 @@ let processTrades filename =
                 Theta = -0.03M
                 IV = 27.22M
                 StockPrice = 103.03M
+                Broker = "Fidelity"
+            }
+    }
+
+    processTrade {
+        Symbol = "RIO"
+        Position = Long
+        Date = new DateTime (2021, 4, 27)
+        Price = 86.45893M
+        Shares = 800.0M
+        Cover = Some
+            {
+                Symbol = "RIO_071621C89.07"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 17)
+                Price = 0.83M
+                Contracts = -8
+                Delta = 0.22M
+                Theta = -0.04M
+                IV = 30.56M
+                StockPrice = 83.02M
+                Broker = "Fidelity"
+            }
+    }
+
+    processTrade {
+        Symbol = "T"
+        Position = Long
+        Date = new DateTime (2021, 6, 7)
+        Price = 29.215M
+        Shares = 1600.0M
+        Cover = Some
+            {
+                Symbol = "T_072321C29.5"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 18)
+                Price = 0.27M
+                Contracts = -16
+                Delta = 0.27M
+                Theta = -0.01M
+                IV = 20.87M
+                StockPrice = 28.65M
+                Broker = "Fidelity"
+            }
+    }
+
+    processTrade {
+        Symbol = "VZ"
+        Position = Long
+        Date = new DateTime (2021, 6, 2)
+        Price = 56.60M
+        Shares = 800.0M
+        Cover = Some
+            {
+                Symbol = "VZ_071621C57.5"
+                OptionType = Call
+                Position = Short
+                Date = new DateTime (2021, 6, 18)
+                Price = 0.28M
+                Contracts = -8
+                Delta = 0.20M
+                Theta = -0.01M
+                IV = 14.86M
+                StockPrice = 55.82M
+                Broker = "Fidelity"
             }
     }
 
@@ -152,17 +136,18 @@ let processTrades filename =
         Date = new DateTime (2021, 3, 24)
         Price = 57.23644M
         Shares = 800.0M
-        Cover =
+        Cover = Some
             {
-                Symbol = "XOM_082021C72.5"
+                Symbol = "XOM_091721C70"
                 OptionType = Call
                 Position = Short
-                Date = new DateTime (2021, 6, 21)
-                Price = 0.395M
+                Date = new DateTime (2021, 6, 25)
+                Price = 1.25M
                 Contracts = -8
-                Delta = 0.11M
-                Theta = -0.01M
-                IV = 30.02M
-                StockPrice = 62.59M
+                Delta = M
+                Theta = -M
+                IV = M
+                StockPrice = M
+                Broker = "Fidelity"
             }
     }

@@ -2,40 +2,39 @@ module Report
 
 open System
 open System.IO
+open Common
 open Trade
 open TDAmeritrade
-
-let blue = "<span class=\"blue\">HOLD</span>"
-let bluesell = "<span class=\"cyan\">SELL</span>"
-let green = "<span class=\"green\">SELL</span>"
-let red = "<span class=\"red\">SELL</span>"
-let yellow = "<span class=\"yellow\">ASSESS</span>"
 
 
 // -------------------- BASIC REPORT IO FUNCTIONS --------------------
 
-
+let mutable reportlines = List<string>.Empty
 (*
     Function to append an array of strings to the end of the indicated file. The 'filename' includes the path to the 
     file. Note that this file is intended to be HTML, and that this content is in the body, so all tags must be 
     provided by the calling function.
 *)
-let appendToReport filename lines =
-    File.AppendAllLines (filename, lines)
+let appendToReport lines =
+    //File.AppendAllLines (filename, lines)
+    reportlines <- reportlines @ lines
 
 
 (*
     Function to close an HTML report file. The 'filename' includes the path to the file. 
 *)
 let endReport filename =
-    File.AppendAllText (filename, "</body></html>")
+    //File.AppendAllText (filename, "</body></html>")
+    appendToReport ["</body></html>"]
+    File.WriteAllLines (filename, reportlines)
 
 
 (*
     Function to open an HTML report file. The 'filename' includes the path to the file. 
 *)
-let startReport filename =
-    File.WriteAllText (filename, (sprintf "<html><style>.black {color:black;} .blue {color:blue;} .cyan {color:#00ccff;} .red {color:red;} .green {color:green;} .yellow {color:gold;} body {background-color:#4d4d4d;} h1,h2,h3,p,blockquote {color:white;} .covered {color:#ccccff;}</style><body><h1>Options Positions Report %s</h1>" (DateTime.Now.ToShortDateString ())))
+let startReport =
+    //File.WriteAllText (filename, (sprintf "<html><style>.black {color:black;} .blue {color:blue;} .cyan {color:#00ccff;} .red {color:red;} .green {color:green;} .yellow {color:gold;} body {background-color:#4d4d4d;} h1,h2,h3,p,blockquote {color:white;} .covered {color:#ccccff;}</style><body><h1>Options Positions Report %s</h1>" (DateTime.Now.ToShortDateString ())))
+    appendToReport [(sprintf "<html><style>.black {color:black;} .blue {color:blue;} .cyan {color:#00ccff;} .red {color:red;} .green {color:green;} .yellow {color:gold;} body {background-color:#4d4d4d;} h1,h2,h3,p,blockquote {color:white;} .covered {color:#ccccff;}</style><body><h1>Options Positions Report %s</h1>" (DateTime.Now.ToShortDateString ()))]
 
 
 // -------------------- OPTION DATA CALCULATIONS --------------------
@@ -69,6 +68,54 @@ let isAnyDeltaTooHigh (quotes : List<OptionQuote.Root>) =
 
 
 // -------------------- STRING REPRESENTATION OF OPTION DATA --------------------
+
+
+let showUnderlying (underlyingtostrike : decimal) otype =
+    let absults = Math.Abs (underlyingtostrike) * 100.0M
+    let ou =
+        match otype with
+        | Call ->
+            if underlyingtostrike < -0.2M then "under"
+            elif underlyingtostrike < -0.1M then "under"
+            elif underlyingtostrike <= -0.0M then "under"
+            else "over"
+        | Put ->
+            if underlyingtostrike > 0.2M  then "over"
+            elif underlyingtostrike > 0.1M then "over"
+            elif underlyingtostrike > 0.0M then "over"
+            else "under"
+    sprintf "Underlying is %.2f %% %s the strike price of the covering option." absults ou
+
+
+(*  This always assumes that the covering Call or Put is always farther out of the money than the option
+    being covered. Note: to assess a covered call for a stock, set the otype to Call.
+*)
+let showCoverStrike (quote : OptionQuote.Root) otype credit =
+    let curvalue = calcPotentialPrice quote.BidPrice quote.AskPrice
+    let underlyingtostrike = (quote.UnderlyingPrice - quote.StrikePrice) / quote.StrikePrice
+    let delta = quote.Delta
+    let color =
+        match otype with
+        | Call ->
+            if delta >= 0.30M then red
+            elif delta >= 0.20M then yellow
+            else blue
+        |Put ->
+            if delta <= -0.30M then red
+            elif delta <= -0.20M then yellow
+            else  blue
+
+    sprintf "Delta is %.2f. %s Current value is %.2f compared to the original credit of %.2f. %s" delta (showUnderlying underlyingtostrike otype) curvalue credit color
+
+
+(*  This always assumes that the covering Call or Put is always farther out of the money than the option
+    being covered. Note: to assess a covered call for a stock, set the otype to Call.
+*)
+let showCoverOptionValue coversymbol otype credit =
+    let quote = TDAmeritrade.getOptionQuote coversymbol
+    let lines =
+        [showCoverStrike quote otype credit]
+    lines
 
 
 (*
@@ -200,55 +247,6 @@ let showStockPrice curprice tradeprice otype position =
     sprintf "Stock Price | Current $ %.2f | Purchased $ %.2f | Change %.2f %%. %s" curprice tradeprice change color
 
 
-let showUnderlying (underlyingtostrike : decimal) otype =
-    let absults = Math.Abs (underlyingtostrike) * 100.0M
-    let ou =
-        match otype with
-        | Call ->
-            if underlyingtostrike < -0.2M then "under"
-            elif underlyingtostrike < -0.1M then "under"
-            elif underlyingtostrike <= -0.0M then "under"
-            else "over"
-        | Put ->
-            if underlyingtostrike > 0.2M  then "over"
-            elif underlyingtostrike > 0.1M then "over"
-            elif underlyingtostrike > 0.0M then "over"
-            else "under"
-    sprintf "Underlying is %.2f %% %s the strike price of the covering option." absults ou
-
-
-(*  This always assumes that the covering Call or Put is always farther out of the money than the option
-    being covered. Note: to assess a covered call for a stock, set the otype to Call.
-*)
-let showCoverStrike (quote : OptionQuote.Root) otype credit =
-    let curvalue = calcPotentialPrice quote.BidPrice quote.AskPrice
-    let underlyingtostrike = (quote.UnderlyingPrice - quote.StrikePrice) / quote.StrikePrice
-    let delta = quote.Delta
-    let color =
-        match otype with
-        | Call ->
-            if delta >= 0.30M then red
-            elif delta >= 0.20M then yellow
-            else blue
-        |Put ->
-            if delta <= -0.30M then red
-            elif delta <= -0.20M then yellow
-            else  blue
-    
-    sprintf "Delta is %.2f. %s Current value is %.2f compared to the original credit of %.2f. %s" delta (showUnderlying underlyingtostrike otype) curvalue credit color
-
-
-let showCoverOptionValue coversymbol otype credit =
-    if coversymbol = ""
-    then ["This position does not have a covering option."]
-    else
-        let quote = TDAmeritrade.getOptionQuote coversymbol
-        let lines =
-            //[sprintf "%s Delta: %.2f" (showCoverStrike quote otype) quote.Delta]
-            [showCoverStrike quote otype credit]
-        lines
-
-
 let showOptionValue curvalue costbasis otype position =
     let (change, color) =
         match position with
@@ -272,7 +270,22 @@ let showOptionValue curvalue costbasis otype position =
     sprintf "%A Value | Current $ %.2f | Purchased $ %.2f | Change %.2f %%. %s" otype curvalue costbasis change color
 
 
-let onCondor filename (trade : CondorTrade) =
+let showStockInRelationToOptions (trades : List<OptionTrade>) (quotes : List<OptionQuote.Root>) =
+    let stockprice = quotes.Head.UnderlyingPrice
+    let output =
+        List.fold2 (fun str (trade : OptionTrade) (quote : OptionQuote.Root) ->
+            let oau =
+                if quote.StrikePrice < quote.UnderlyingPrice
+                then "under"
+                elif quote.StrikePrice > quote.UnderlyingPrice
+                then "above"
+                else "at"
+            sprintf "%s %A %A strike %.2f is %s, " str trade.Position trade.OptionType quote.StrikePrice oau
+        ) "" trades quotes
+    sprintf "%s stock price %.2f. " (output.Substring (0, output.Length-2)) stockprice  // Trim last 2 characters.
+
+
+(*let onCondor filename (trade : CondorTrade) =
     let quotes = TDAmeritrade.getCondorQuotes trade.Symbols
     let underlying = quotes.Head.Underlying
     let expdays = quotes.Head.DaysToExpiration
@@ -301,16 +314,16 @@ let onCondor filename (trade : CondorTrade) =
         //[showPotentialPrices trade.Options quotes] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
         ["</p>"]
-    lines |> List.toArray |> appendToReport filename
+    lines |> List.toArray |> appendToReport filename*)
 
 
 (*  Using the trade data, get the option symbol, fetch the data from TD Ameritrade, and append the data to
     the report.
  *)
-let onLEAP filename (trade : OptionTrade) =
+let onLEAP (trade : OptionTrade) =
     let quote = TDAmeritrade.getOptionQuote trade.Symbol
     let lines =
-        [sprintf "<h3>Report on %s LEAP %s %A %A</h3>" quote.Underlying trade.Symbol trade.Position trade.OptionType] @
+        [sprintf "<h3>Report on %s %s %A %A</h3>" quote.Underlying trade.Symbol trade.Position trade.OptionType] @
         [sprintf "<p>"] @
         [showOptionValue (calcPotentialPrice quote.BidPrice quote.AskPrice) trade.Price trade.OptionType trade.Position] @
         ["<br />"] @
@@ -324,10 +337,10 @@ let onLEAP filename (trade : OptionTrade) =
         ["</p><p class=\"covered\">"] @
         //(showCoverOptionValue trade.Cover trade.OptionType trade.Credit) @
         ["</p>"]
-    lines |> List.toArray |> appendToReport filename
+    lines |> appendToReport
 
 
-let onSpread filename (trade : SpreadTrade) =
+let onSpread (trade : SpreadTrade) =
     let quotes =
         List.map (fun (option : OptionTrade) ->
             option.Symbol
@@ -343,8 +356,9 @@ let onSpread filename (trade : SpreadTrade) =
         ) 0.0M quotes trade.Options
 
     let lines =
-        [sprintf "<h3>Report on %s %A %A Spread</h3><p>" underlying trade.Options.Head.OptionType (Trade.spreadTypeToString trade.SpreadType)] @
+        [sprintf "<h3>Report on %s %A %s Spread</h3><p>" underlying trade.Options.Head.OptionType (Trade.spreadTypeToString trade.SpreadType)] @
         [showOptionPositionTypeAndPrice trade.Options] @
+        [showStockInRelationToOptions trade.Options quotes] @
         [showDeltas (List.map (fun (quote : OptionQuote.Root) -> quote.Delta) quotes)] @
         [showPotentialPrices trade.Options quotes] @
         [if curPL >= trade.TargetPL then
@@ -356,15 +370,56 @@ let onSpread filename (trade : SpreadTrade) =
         else
             sprintf "Profit/Loss is estimated at $ %.2f. %s" curPL blue] @
         ["</p>"]
-    lines |> List.toArray |> appendToReport filename
+    lines |> appendToReport
 
 
-let onStock filename (trade : StockTrade) =
+(*
+    Determine whether a covered call should be bought back as it is cheap enough for a commission-free sale.
+*)
+let buybackCoveredCall (quote : OptionQuote.Root) =
+    let curprice = calcPotentialPrice quote.BidPrice quote.AskPrice
+    if curprice <= 0.10M then sprintf "Option value is %.2f; BTC saving %i days. %s" curprice quote.DaysToExpiration green
+    elif curprice <= 0.15M then sprintf "Option value is %.2f; put in BTC for $0.10 saving %i days. %s" curprice quote.DaysToExpiration bluesell
+    else sprintf "Option value is %.2f; still too much to buy back cheaply. %i days remaining. %s" curprice quote.DaysToExpiration blue
+
+
+(*
+    Assesses whether a covered call in ITM, ATM, or OTM and by how much. Determined whether you should hold or
+    sell (BTC) the position.
+
+    ALWAYS assumed to be a Call.
+*)
+let showStockToStrike symbol =
+    let quote = TDAmeritrade.getOptionQuote symbol
+    let stockprice = quote.UnderlyingPrice
+    let strikeprice = quote.StrikePrice
+    let diffprice = stockprice - strikeprice
+    let diffper = (diffprice / strikeprice) * 100M
+    let (color, change) =
+        if stockprice < strikeprice then (blue, "under")
+        elif stockprice = strikeprice then (red, "at")
+        else (red, "above")
     let lines =
-        [sprintf "<h3> Report on Covered Call %s for %s</h3>" trade.Cover.Symbol trade.Symbol] @
-        ["<p class=\"covered\">"] @
-        (showCoverOptionValue trade.Cover.Symbol Call trade.Cover.Price) @   // Having Stock is equivalent to having Long Call
-        ["</p>"]
-    lines |> List.toArray |> appendToReport filename
+        [sprintf "%s @ %.2f | Strike @ %.2f | %.2f %% %s Strike | Delta %.2f. %s" quote.Underlying stockprice strikeprice diffper change quote.Delta color] @
+        ["<br />"] @
+        [buybackCoveredCall quote]
+    lines
+    
 
+
+let onStock stockpath (trade : StockTrade) =
+    if trade.Cover.IsSome then
+        [sprintf "<h3> Report on Covered Call %s for %s</h3>" trade.Cover.Value.Symbol trade.Symbol] @
+        ["<p class=\"covered\">"] @
+        (showStockToStrike trade.Cover.Value.Symbol) @
+        ["<br />"] @
+        [StockQuoteData.GetStockMAAnalysis 60 260 stockpath trade.Symbol] @
+        ["</p>"]
+        |> appendToReport
+    else
+        [sprintf "<h3> Report on %s</h3>" trade.Symbol] @
+        ["<p class=\"covered\">"] @
+        [StockQuoteData.GetStockMAAnalysis 60 260 stockpath trade.Symbol] @
+        ["</p>"]
+        |> appendToReport
 
